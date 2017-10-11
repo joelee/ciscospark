@@ -1,6 +1,9 @@
 'use strict'
 
 /** @ignore */
+const fixString = text => escape(text).replace(/%(..)/g, '&#x$1;')
+
+/** @ignore */
 const request = require('request')
 
 /**
@@ -114,7 +117,11 @@ class CiscoSpark {
     if (!args.params) return callback(new Error('Invalid Params.'))
     this.request({
       method: 'POST',
-      form: args.params
+      form: Object.assign(args.params, {
+        markdown: fixString(args.params.markdown || ''),
+        text: fixString(args.params.text || ''),
+        html: fixString(args.params.html || '')
+      })
     }, args.callback)
   }
 
