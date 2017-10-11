@@ -9,6 +9,8 @@ const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
 const TEST_ROOM_ID = '**TestRoomId**'
 
+const fixString = text => escape(text).replace(/%(..)/g, '&#x$1;')
+
 /** @test {Messages} */
 describe('CiscoSpark.messages', function () {
   before(function () {
@@ -32,7 +34,7 @@ describe('CiscoSpark.messages', function () {
         expect(response.options.headers['User-Agent']).to.be.equal(TEST_USERAGENT)
         expect(response.options.method).to.be.equal('POST')
         expect(response.options.form.roomId).to.be.equal(TEST_ROOM_ID)
-        expect(response.options.form.markdown).to.be.equal(text)
+        expect(response.options.form.markdown).to.be.equal(fixString(text))
         done()
       })
     })
@@ -78,7 +80,7 @@ describe('CiscoSpark.messages', function () {
         expect(err).to.be.not.ok
         expect(response.options.method).to.be.equal('POST')
         expect(response.options.form.toPersonId).to.be.equal(TEST_ID)
-        expect(response.options.form.markdown).to.be.equal(text)
+        expect(response.options.form.markdown).to.be.equal(fixString(text))
         done()
       })
     })
@@ -91,7 +93,7 @@ describe('CiscoSpark.messages', function () {
         expect(err).to.be.not.ok
         expect(response.options.method).to.be.equal('POST')
         expect(response.options.form.toPersonEmail).to.be.equal(TEST_ID)
-        expect(response.options.form.markdown).to.be.equal(text)
+        expect(response.options.form.markdown).to.be.equal(fixString(text))
         done()
       })
     })
