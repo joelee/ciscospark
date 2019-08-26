@@ -8,6 +8,8 @@ const expect = require('chai').expect
 const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
 const TEST_ROOM_ID = '**TestRoomId**'
+const TEST_PERSON_ID = 12345678
+const TEST_EMAIL = 'test@example.com'
 
 /** @test {Messages} */
 describe('CiscoSpark.messages', function () {
@@ -54,6 +56,21 @@ describe('CiscoSpark.messages', function () {
         expect(err).to.be.not.ok
         expect(response.options.url).to.be.equal(this.spark.messages.apiUrl + '/' + TEST_ROOM_ID)
         expect(response.options.method).to.be.equal('GET')
+        done()
+      })
+    })
+
+    /** @test {Messages#direct} */
+    it('should list Messages in a  1:1 (direct) Room', function (done) {
+      this.spark.messages.direct({
+        personId: TEST_PERSON_ID,
+        personEmail: TEST_EMAIL
+      }, (err, response) => {
+        expect(err).to.be.not.ok
+        expect(response.options.method).to.be.equal('GET')
+        expect(response.options.qs.personEmail).to.be.equal(TEST_EMAIL)
+        expect(response.options.qs.personId).to.be.equal(TEST_PERSON_ID)
+        expect(response.options.url).to.be.equal(this.spark.messages.apiUrl + '/direct')
         done()
       })
     })

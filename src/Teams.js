@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Teams
- * @see https://developer.ciscospark.com/resource-teams.html
+ * @see https://developer.webex.com/docs/api/v1/teams
  */
 class Teams extends CiscoSpark {
   /**
