@@ -124,6 +124,15 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#direct} */
+    it('should error when direct without personId or personEmail', function (done) {
+      this.spark.messages.direct(null, (err, response) => {
+        expect(err).to.be.instanceOf(Error)
+        expect(response).to.be.not.ok
+        done()
+      })
+    })
+
     /** @test {Messages#create} */
     it('should error when create without RoomId', function (done) {
       const text = 'This is a test message'
