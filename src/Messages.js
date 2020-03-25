@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Messages
- * @see https://developer.ciscospark.com/resource-messages.html
+ * @see https://developer.webex.com/docs/api/v1/messages
  */
 class Messages extends CiscoSpark {
   /**
@@ -25,7 +25,7 @@ class Messages extends CiscoSpark {
    * The list sorts the messages in descending order by creation date.
    *
    * @override
-   * @param {MessageListParams} params - see https://developer.ciscospark.com/endpoint-messages-get.html
+   * @param {MessageListParams} params - see https://developer.webex.com/docs/api/v1/messages/list-messages
    * @param {requestCallback} callback
    */
   list (params, callback) {
@@ -40,11 +40,33 @@ class Messages extends CiscoSpark {
   }
 
   /**
+   * List Direct Messages
+   * Lists all messages in a 1:1 (direct) room. Use the personId or personEmail query parameter to specify the room.
+   * Each message will include content attachments if present.
+   * The list sorts the messages in descending order by creation date.
+   *
+   * @param {MessageDirectParams} params - see https://developer.webex.com/docs/api/v1/messages/list-direct-messages
+   * @param {requestCallback} callback
+   */
+  direct (params, callback) {
+    if (params && (params.personId || params.personEmail)) {
+      const args = this.getArgs(params, callback)
+      return super.request({
+        method: 'GET',
+        url: `${this.apiUrl}/direct`,
+        qs: args.params
+      }, callback)
+    } else {
+      return callback(new Error('Invalid params. Required personId or personEmail'))
+    }
+  }
+
+  /**
    * Create a Message
    * Posts a plain text message, and optionally, a media content attachment, to a room.
    *
    * @override
-   * @param {MessageCreateParams} params - see https://developer.ciscospark.com/endpoint-messages-post.html
+   * @param {MessageCreateParams} params - see https://developer.webex.com/docs/api/v1/messages/create-a-message
    * @param {requestCallback} callback
    */
   create (params, callback) {
@@ -132,6 +154,12 @@ module.exports = Messages
  * @property {string} [before] - list Messages before time in ISO8601 format
  * @property {string} [beforeMessage] - list Messages before Message ID
  * @property {number} [max] - Limit maximum messages in response
+ */
+
+/**
+ * @typedef {Object} MessageDirectParams
+ * @property {string} personId - Person ID
+ * @property {string} personEmail - Email Address
  */
 
 /**

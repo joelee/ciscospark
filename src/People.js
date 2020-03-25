@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark People
- * @see https://developer.ciscospark.com/resource-people.html
+ * @see https://developer.webex.com/docs/api/v1/people
  */
 class People extends CiscoSpark {
   /**
@@ -25,7 +25,7 @@ class People extends CiscoSpark {
    * Admin users can omit these fields and list all users in their organization.
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-people-get.html
+   * @param {Object} params - see https://developer.webex.com/docs/api/v1/people/list-people
    * @param {requestCallback} callback
    */
   list (params, callback) {

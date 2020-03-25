@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Rooms
- * @see https://developer.ciscospark.com/resource-rooms.html
+ * @see https://developer.webex.com/docs/api/v1/rooms
  */
 class Rooms extends CiscoSpark {
   /**
@@ -23,7 +23,7 @@ class Rooms extends CiscoSpark {
    * List Rooms
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-rooms-get.html
+   * @param {Object} params - see https://developer.webex.com/docs/api/v1/rooms/list-rooms
    * @param {requestCallback} callback
    */
   list (params, callback) {
@@ -37,7 +37,7 @@ class Rooms extends CiscoSpark {
    * Create a Room
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-rooms-post.html
+   * @param {Object} params - see https://developer.webex.com/docs/api/v1/rooms/create-a-room
    * @param {requestCallback} callback
    */
   create (params, callback) {

@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Teams
- * @see https://developer.ciscospark.com/resource-team-memberships.html
+ * @see https://developer.webex.com/docs/api/v1/team-memberships
  */
 class TeamMemberships extends CiscoSpark {
   /**
@@ -23,7 +23,7 @@ class TeamMemberships extends CiscoSpark {
    * List Team Memberships
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-teammemberships-get.html
+   * @param {Object} params - see https://developer.webex.com/docs/api/v1/team-memberships/list-team-memberships
    * @param {requestCallback} callback
    */
   list (params, callback) {
@@ -37,7 +37,7 @@ class TeamMemberships extends CiscoSpark {
    * Create a new Team Membership
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-teammemberships-post.html
+   * @param {Object} params - see https://developer.webex.com/docs/api/v1/team-memberships/create-a-team-membership
    * @param {requestCallback} callback
    */
   create (params, callback) {
